@@ -30,12 +30,21 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b relative ${
         isScrolled
-          ? "bg-[#050505] border-[#2A2A2A] shadow-lg py-4"
-          : "bg-black/20 backdrop-blur-lg border-white/10 py-6"
+          ? "bg-[#050505] border-[#2A2A2A] shadow-[0_4px_30px_rgba(0,0,0,0.9)] py-4"
+          : "bg-black/25 backdrop-blur-xl border-white/10 py-5"
       }`}
     >
+      {/* Option 2: Bolted Panel Chrome Rivets Motif */}
+      <div className="absolute top-2 left-4 w-2 h-2 rounded-full bg-gradient-to-br from-[#C7CDD3] to-[#2A2A2A] border border-[#C7CDD3]/60 shadow-[0_0_4px_rgba(199,205,211,0.5)] pointer-events-none" />
+      <div className="absolute top-2 right-4 w-2 h-2 rounded-full bg-gradient-to-br from-[#C7CDD3] to-[#2A2A2A] border border-[#C7CDD3]/60 shadow-[0_0_4px_rgba(199,205,211,0.5)] pointer-events-none" />
+      <div className="absolute bottom-2 left-4 w-2 h-2 rounded-full bg-gradient-to-br from-[#C7CDD3] to-[#2A2A2A] border border-[#C7CDD3]/60 shadow-[0_0_4px_rgba(199,205,211,0.5)] pointer-events-none" />
+      <div className="absolute bottom-2 right-4 w-2 h-2 rounded-full bg-gradient-to-br from-[#C7CDD3] to-[#2A2A2A] border border-[#C7CDD3]/60 shadow-[0_0_4px_rgba(199,205,211,0.5)] pointer-events-none" />
+
+      {/* Signature Red-to-Blue Power Indicator Line along bottom */}
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#D91E26] to-transparent opacity-70" />
+      <div className="absolute bottom-0 left-1/3 w-1/3 h-[2px] bg-gradient-to-r from-[#D91E26] via-[#C7CDD3] to-[#1E56B4] shadow-[0_0_10px_rgba(217,30,38,0.8)]" />
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo Badge */}
         <Link href="#" className="flex items-center gap-3 z-50">
