@@ -157,16 +157,27 @@ export function MembershipSection() {
                   </ul>
 
                   {/* CTA */}
-                  <button className={`relative overflow-hidden group/btn w-full py-4 rounded-lg font-bold tracking-wider uppercase text-sm transition-all duration-300 ${
-                    tier.highlighted
-                      ? "bg-gradient-to-b from-[#D91E26] to-[#901419] text-white shadow-[0_0_20px_rgba(217,30,38,0.4)] hover:shadow-[0_0_30px_rgba(217,30,38,0.7)] hover:-translate-y-0.5"
-                      : "border border-[#2A2A2A] text-[#C7CDD3] hover:border-[#C7CDD3] hover:text-white hover:-translate-y-0.5"
-                  }`}>
+                  <a
+                    href={`https://wa.me/919494723399?text=${encodeURIComponent(`Hi NR Gym, I'm interested in joining the ${tier.name} Plan!`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      // If user is on desktop, also ensure smooth scroll to contact as fallback
+                      if (typeof window !== "undefined" && window.innerWidth >= 768) {
+                        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                    className={`relative overflow-hidden group/btn w-full py-4 rounded-lg font-bold tracking-wider uppercase text-sm transition-all duration-300 block text-center cursor-pointer ${
+                      tier.highlighted
+                        ? "bg-gradient-to-b from-[#D91E26] to-[#901419] text-white shadow-[0_0_20px_rgba(217,30,38,0.4)] hover:shadow-[0_0_30px_rgba(217,30,38,0.7)] hover:-translate-y-0.5"
+                        : "border border-[#2A2A2A] text-[#C7CDD3] hover:border-[#C7CDD3] hover:text-white hover:-translate-y-0.5"
+                    }`}
+                  >
                     <span className="relative z-10">Join Now</span>
                     {tier.highlighted && (
                       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
                     )}
-                  </button>
+                  </a>
                 </div>
               </div>
             </motion.div>
