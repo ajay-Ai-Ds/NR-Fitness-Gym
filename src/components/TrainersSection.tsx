@@ -4,13 +4,16 @@ import { useRef, useCallback, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Shield, Target, Award } from "lucide-react";
 
+import Image from "next/image";
+
 const trainers = [
   {
-    name: "Trainer Name 1",
+    name: "Head Coach",
     role: "Head Coach / Strength Specialist",
-    bio: "10+ years of experience in powerlifting and strength conditioning. Certified by NSCA.",
+    bio: "10+ years of experience in powerlifting and strength conditioning. Certified strength & fitness specialist.",
     specialties: ["Strength", "Powerlifting", "Conditioning"],
     icon: Shield,
+    image: "/images/trainer1.png",
   },
   {
     name: "Trainer Name 2",
@@ -97,20 +100,29 @@ function TrainerCard({ trainer, index }: { trainer: typeof trainers[0]; index: n
           }}
         />
 
-        {/* Photo Placeholder */}
-        <div className="relative h-56 bg-gradient-to-br from-[#111] via-[#0d0d0d] to-[#1a1a1a] overflow-hidden">
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <div className="w-20 h-20 rounded-full border-2 border-[#D91E26]/50 bg-[#1E56B4]/20 flex items-center justify-center mb-3">
-              <Icon size={32} className="text-[#C7CDD3]" />
+        {/* Photo Container */}
+        <div className="relative h-72 bg-gradient-to-br from-[#111] via-[#0d0d0d] to-[#1a1a1a] overflow-hidden">
+          {trainer.image ? (
+            <Image
+              src={trainer.image}
+              alt={trainer.name}
+              fill
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            />
+          ) : (
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <div className="w-20 h-20 rounded-full border-2 border-[#D91E26]/50 bg-[#1E56B4]/20 flex items-center justify-center mb-3">
+                <Icon size={32} className="text-[#C7CDD3]" />
+              </div>
+              <p className="text-[#555] text-xs tracking-wider uppercase">[Swap Photo Here]</p>
             </div>
-            <p className="text-[#555] text-xs tracking-wider uppercase">[Swap Photo Here]</p>
-          </div>
+          )}
           {/* Classified stamp overlay */}
-          <div className="absolute top-3 right-3 px-3 py-1 rounded border border-[#D91E26]/40 bg-[#D91E26]/10 backdrop-blur-sm">
+          <div className="absolute top-3 right-3 px-3 py-1 rounded border border-[#D91E26]/40 bg-[#D91E26]/10 backdrop-blur-sm z-10">
             <span className="text-[#D91E26] text-[10px] font-bold tracking-[0.15em] uppercase">Elite Trainer</span>
           </div>
           {/* Bottom gradient fade into card body */}
-          <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black/80 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black via-black/60 to-transparent z-10" />
         </div>
 
         {/* Card Body */}
