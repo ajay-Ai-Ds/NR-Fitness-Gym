@@ -146,9 +146,9 @@ export function AboutSection() {
               Forge Your Strongest Self
             </h3>
             <p className="text-[#B7B7B7] leading-relaxed mb-6 text-lg">
-              At <span className="text-white font-semibold">NR Fitness Gym</span>, we believe that true strength 
+              At <span className="text-white font-semibold">NR Gym</span>, located in Tallarevu, Korangi, we believe that true strength 
               is forged through dedication, discipline, and the right environment. Our state-of-the-art facility 
-              is designed to push your limits and help you achieve results you never thought possible.
+              is equipped with top-tier equipment to help you achieve results you never thought possible.
             </p>
             <p className="text-[#B7B7B7] leading-relaxed text-lg">
               Whether you&apos;re a beginner taking your first step or a seasoned athlete looking to break through 

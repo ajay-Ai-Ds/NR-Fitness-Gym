@@ -32,11 +32,11 @@ export function Footer() {
                 <div className="w-4 h-4 rounded-full bg-[#C7CDD3] shadow-inner" />
               </div>
               <span className="font-extrabold text-2xl tracking-wider text-white">
-                NR FITNESS GYM
+                NR GYM
               </span>
             </Link>
             <p className="text-[#B7B7B7] text-sm leading-relaxed max-w-sm">
-              Transform Your Body. Forge Your Strength. Become Unstoppable. Join the premier gym designed for real transformation.
+              Transform Your Body. Forge Your Strength. Become Unstoppable. Located in Tallarevu, Korangi, Andhra Pradesh.
             </p>
           </div>
 
@@ -62,11 +62,11 @@ export function Footer() {
             <h4 className="text-sm font-bold tracking-widest uppercase text-white mb-4">Contact</h4>
             <div className="space-y-3 text-sm text-[#B7B7B7]">
               <a
-                href="tel:9989391930"
+                href="tel:09494723399"
                 className="flex items-center gap-3 hover:text-white transition-colors"
               >
                 <Phone size={16} className="text-[#D91E26]" />
-                <span>+91 9989391930</span>
+                <span>+91 94947 23399</span>
               </a>
               <a
                 href="https://maps.app.goo.gl/wZcbcAHBB9rEFEi48?g_st=ac"
@@ -75,7 +75,7 @@ export function Footer() {
                 className="flex items-center gap-3 hover:text-white transition-colors"
               >
                 <MapPin size={16} className="text-[#1E56B4]" />
-                <span>NR Fitness Gym Location</span>
+                <span>Tallarevu, Korangi, AP 533463</span>
               </a>
             </div>
           </div>
@@ -83,7 +83,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#1a1a1a] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#777]">
-          <p>© {new Date().getFullYear()} NR Fitness Gym. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} NR Gym. All rights reserved.</p>
           
           <button
             onClick={scrollToTop}

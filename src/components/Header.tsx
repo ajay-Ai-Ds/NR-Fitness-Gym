@@ -43,7 +43,7 @@ export function Header() {
             <div className="w-4 h-4 rounded-full bg-[#C7CDD3] shadow-inner" />
           </div>
           <span className="font-bold text-xl tracking-wider text-white hidden sm:block drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-            NR FITNESS
+            NR GYM
           </span>
         </Link>
 

@@ -98,9 +98,9 @@ export function LocationContactSection() {
             className="space-y-8"
           >
             <div className="p-8 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-xl space-y-6">
-              <h3 className="text-2xl font-bold text-white tracking-wide">NR FITNESS GYM</h3>
+              <h3 className="text-2xl font-bold text-white tracking-wide">NR GYM</h3>
               <p className="text-[#B7B7B7] leading-relaxed">
-                Step inside our high-performance facility equipped with state-of-the-art weights, machines, and expert coaches ready to guide you.
+                Step inside our high-performance facility equipped with top-tier equipment and expert coaching. Rated 5.0 ★★★★★ on Google!
               </p>
 
               <div className="space-y-4 pt-4 border-t border-[#2A2A2A]">
@@ -112,10 +112,10 @@ export function LocationContactSection() {
                   <div>
                     <p className="text-xs uppercase text-[#B7B7B7] tracking-wider font-semibold">Call Us</p>
                     <a
-                      href="tel:9989391930"
+                      href="tel:09494723399"
                       className="text-lg font-bold text-white hover:text-[#D91E26] transition-colors"
                     >
-                      +91 9989391930
+                      +91 94947 23399
                     </a>
                   </div>
                 </div>
@@ -127,7 +127,9 @@ export function LocationContactSection() {
                   </div>
                   <div>
                     <p className="text-xs uppercase text-[#B7B7B7] tracking-wider font-semibold">Visit Us</p>
-                    <p className="text-white font-medium">NR Fitness Gym, Main Branch</p>
+                    <p className="text-white font-medium">Tallarevu, Korangi, Andhra Pradesh 533463</p>
+                    <p className="text-xs text-[#B7B7B7] mt-0.5">Plus Code: Q6VQ+G5 Tallarevu</p>
+                    <p className="text-xs text-[#D91E26] font-semibold mt-1">Opens 5:00 AM</p>
                   </div>
                 </div>
               </div>

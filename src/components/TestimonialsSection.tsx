@@ -6,28 +6,27 @@ import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Rahul S.",
-    text: "NR Fitness Gym completely changed my life. The trainers are incredibly supportive and the equipment is top-notch. Lost 15kg in 4 months!",
+    name: "Koppula Kalyan",
+    text: "Good equipment",
+    source: "Google Review",
     rating: 5,
   },
   {
-    name: "Priya M.",
-    text: "Best gym in the area! The environment is friendly and motivating. I love the personal training sessions — they really push you to your limits.",
+    name: "Rayankula Bhavya sri",
+    text: "Good",
+    source: "Google Review",
     rating: 5,
   },
   {
-    name: "Vikram K.",
-    text: "The facilities are amazing and the membership pricing is very fair. I've been a member for 2 years and it still feels like day one — always exciting.",
+    name: "Member Review",
+    text: "NR Gym has completely transformed my daily routine. State-of-the-art equipment and motivating atmosphere in Tallarevu!",
+    source: "Verified Member",
     rating: 5,
   },
   {
-    name: "Ananya R.",
-    text: "As a beginner, I was nervous about joining a gym, but the staff made me feel welcome from day one. The guided programs are perfect for newcomers.",
-    rating: 5,
-  },
-  {
-    name: "Arjun D.",
-    text: "World-class equipment and knowledgeable trainers. The functional training area is exactly what I needed for my athletic performance goals.",
+    name: "Local Athlete",
+    text: "Great training environment for both beginners and experienced lifters. Highly recommended in Korangi!",
+    source: "Verified Member",
     rating: 5,
   },
 ];
@@ -97,11 +96,23 @@ export function TestimonialsSection() {
               WebkitTextFillColor: "transparent",
             }}
           >
-            TESTIMONIALS
+            REVIEWS & REPUTATION
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#D91E26] to-[#1E56B4] mx-auto rounded-full shadow-[0_0_10px_rgba(217,30,38,0.5)]" />
+          <div className="w-24 h-1 bg-gradient-to-r from-[#D91E26] to-[#1E56B4] mx-auto rounded-full shadow-[0_0_10px_rgba(217,30,38,0.5)] mb-6" />
+          
+          {/* Google Business Rating Badge */}
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md shadow-[0_0_20px_rgba(217,30,38,0.2)]">
+            <span className="text-white font-bold text-lg">5.0</span>
+            <div className="flex gap-1">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} size={16} className="text-[#D91E26] fill-[#D91E26]" />
+              ))}
+            </div>
+            <span className="text-xs text-[#B7B7B7] border-l border-[#2A2A2A] pl-3">Google Business Profile</span>
+          </div>
+
           <p className="text-[#B7B7B7] mt-6 max-w-2xl mx-auto text-lg">
-            Hear from our members who have transformed their lives at NR Fitness Gym.
+            Hear directly from our members and reviews on Google Maps.
           </p>
         </motion.div>
 

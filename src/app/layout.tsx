@@ -9,8 +9,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "NR Fitness Gym",
-  description: "Transform Your Body. Forge Your Strength. Become Unstoppable.",
+  title: "NR Gym - Tallarevu, Korangi",
+  description: "Transform Your Body. Forge Your Strength. Become Unstoppable. Located in Tallarevu, Korangi, Andhra Pradesh.",
 };
 
 export default function RootLayout({
