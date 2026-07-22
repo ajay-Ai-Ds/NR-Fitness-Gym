@@ -109,20 +109,34 @@ export function HeroSection() {
                 className="flex flex-col sm:flex-row items-center justify-center gap-6 pointer-events-auto"
               >
                 {/* Join Today CTA with ripple and glow */}
-                <button className="relative overflow-hidden group bg-gradient-to-b from-[#D91E26] to-[#901419] px-10 py-5 rounded-sm shadow-[0_0_20px_rgba(217,30,38,0.5)] hover:shadow-[0_0_40px_rgba(217,30,38,0.9)] transition-all duration-300 transform hover:-translate-y-1">
+                <a 
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="relative overflow-hidden group bg-gradient-to-b from-[#D91E26] to-[#901419] px-10 py-5 rounded-sm shadow-[0_0_20px_rgba(217,30,38,0.5)] hover:shadow-[0_0_40px_rgba(217,30,38,0.9)] transition-all duration-300 transform hover:-translate-y-1 inline-block text-center cursor-pointer"
+                >
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.4)_0%,_transparent_60%)] opacity-0 group-hover:opacity-100 scale-[0.5] group-hover:scale-[2] transition-all duration-500 ease-out" />
                   <span className="relative z-10 text-white font-bold tracking-[0.1em] uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Join Today</span>
                   {/* Metallic edge highlight */}
                   <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-                </button>
+                </a>
                 
                 {/* View Membership CTA with metallic border */}
-                <button className="relative overflow-hidden group px-10 py-5 rounded-sm border border-[#C7CDD3]/30 bg-gradient-to-b from-[#2A2A2A]/50 to-[#050505]/80 backdrop-blur-md hover:border-[#C7CDD3] transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_15px_rgba(199,205,211,0.1)] hover:shadow-[0_0_25px_rgba(199,205,211,0.3)]">
+                <a 
+                  href="#membership"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById("membership")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="relative overflow-hidden group px-10 py-5 rounded-sm border border-[#C7CDD3]/30 bg-gradient-to-b from-[#2A2A2A]/50 to-[#050505]/80 backdrop-blur-md hover:border-[#C7CDD3] transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_15px_rgba(199,205,211,0.1)] hover:shadow-[0_0_25px_rgba(199,205,211,0.3)] inline-block text-center cursor-pointer"
+                >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
                   <span className="relative z-10 text-[#C7CDD3] group-hover:text-white tracking-[0.1em] uppercase font-bold transition-colors duration-300">
                     View Membership
                   </span>
-                </button>
+                </a>
               </motion.div>
             </motion.div>
           </div>

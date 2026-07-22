@@ -42,7 +42,7 @@ export function Header() {
           <div className="relative w-12 h-12 rounded-full border-4 border-[#D91E26] bg-[#1E56B4] flex items-center justify-center shadow-[0_0_15px_rgba(217,30,38,0.4)] transition-transform hover:scale-105">
             <div className="w-4 h-4 rounded-full bg-[#C7CDD3] shadow-inner" />
           </div>
-          <span className="font-bold text-xl tracking-wider text-white hidden sm:block drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+          <span className="font-bold text-base sm:text-xl tracking-wider text-white block drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
             NR GYM
           </span>
         </Link>
@@ -50,13 +50,22 @@ export function Header() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium tracking-wide text-[#B7B7B7] hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(217,30,38,0.8)]"
+              onClick={(e) => {
+                e.preventDefault();
+                if (link.href === "#") {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                } else {
+                  const targetId = link.href.replace("#", "");
+                  document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              className="text-sm font-medium tracking-wide text-[#B7B7B7] hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(217,30,38,0.8)] cursor-pointer"
             >
               {link.name}
-            </Link>
+            </a>
           ))}
         </nav>
 
@@ -80,14 +89,23 @@ export function Header() {
               className="fixed inset-0 bg-[#050505] z-40 flex flex-col items-center justify-center gap-8"
             >
               {navLinks.map((link) => (
-                <Link
+                <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-2xl font-bold tracking-widest text-[#B7B7B7] hover:text-[#D91E26] transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMobileMenuOpen(false);
+                    if (link.href === "#") {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    } else {
+                      const targetId = link.href.replace("#", "");
+                      document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="text-2xl font-bold tracking-widest text-[#B7B7B7] hover:text-[#D91E26] transition-colors cursor-pointer"
                 >
                   {link.name}
-                </Link>
+                </a>
               ))}
             </motion.div>
           )}
