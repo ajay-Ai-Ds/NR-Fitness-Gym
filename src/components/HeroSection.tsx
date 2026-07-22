@@ -85,10 +85,10 @@ export function HeroSection() {
   return (
     <section className="relative bg-[#050505] overflow-hidden">
       {/* 
-        This container defines the scrollable height. 
-        As the user scrolls through this 300vh container, the camera moves.
+        This container defines the scrollable height for the 3D camera flight.
+        130vh keeps the transition tight and removes empty gap before About Us.
       */}
-      <div id="hero-scroll-container" className="h-[300vh] w-full">
+      <div id="hero-scroll-container" className="h-[130vh] w-full">
         {/* Sticky container for the Canvas and UI */}
         <div 
           className="sticky top-0 left-0 w-full h-screen overflow-hidden"
