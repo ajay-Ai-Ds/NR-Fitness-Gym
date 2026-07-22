@@ -11,6 +11,7 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { LocationContactSection } from "@/components/LocationContactSection";
 import { Footer } from "@/components/Footer";
 import { FloatingCallButton } from "@/components/FloatingCallButton";
+import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
       <TestimonialsSection />
       <LocationContactSection />
       <Footer />
+      <FloatingWhatsAppButton />
       <FloatingCallButton />
     </main>
   );
