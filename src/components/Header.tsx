@@ -42,9 +42,14 @@ export function Header() {
           <div className="relative w-12 h-12 rounded-full border-4 border-[#D91E26] bg-[#1E56B4] flex items-center justify-center shadow-[0_0_15px_rgba(217,30,38,0.4)] transition-transform hover:scale-105">
             <div className="w-4 h-4 rounded-full bg-[#C7CDD3] shadow-inner" />
           </div>
-          <span className="font-bold text-base sm:text-xl tracking-wider text-white block drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-            NR GYM
-          </span>
+          <div className="flex flex-col leading-none">
+            <span className="font-extrabold text-base sm:text-xl tracking-wider text-white block drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+              NR GYM
+            </span>
+            <span className="text-[9px] sm:text-[10px] tracking-[0.25em] font-bold text-[#D91E26] uppercase mt-0.5 drop-shadow-[0_0_6px_rgba(217,30,38,0.6)]">
+              FITNESS CENTER
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
