@@ -13,6 +13,7 @@ import { Footer } from "@/components/Footer";
 import { FloatingCallButton } from "@/components/FloatingCallButton";
 import { FloatingWhatsAppButton } from "@/components/FloatingWhatsAppButton";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
+import { SectionDivider } from "@/components/SectionDivider";
 
 export default function Home() {
   return (
@@ -21,14 +22,31 @@ export default function Home() {
       <LoadingScreen />
       <Header />
       <HeroSection />
+      
+      <SectionDivider accent="dual" />
       <AboutSection />
+
+      <SectionDivider accent="red" />
       <ProgramsSection />
+
+      <SectionDivider accent="blue" />
       <WhyChooseUsSection />
+
+      <SectionDivider accent="dual" />
       <TrainersSection />
+
+      <SectionDivider accent="red" />
       <GallerySection />
+
+      <SectionDivider accent="dual" />
       <MembershipSection />
+
+      <SectionDivider accent="blue" />
       <TestimonialsSection />
+
+      <SectionDivider accent="dual" />
       <LocationContactSection />
+      
       <Footer />
       <FloatingWhatsAppButton />
       <FloatingCallButton />
