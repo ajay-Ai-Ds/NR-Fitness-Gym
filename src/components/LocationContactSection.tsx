@@ -98,7 +98,7 @@ export function LocationContactSection() {
             className="space-y-8"
           >
             <div className="p-8 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-xl space-y-6">
-              <h3 className="text-2xl font-bold text-white tracking-wide">NR GYM</h3>
+              <h3 className="text-2xl font-bold text-white tracking-wide">NR FITNESS GYM</h3>
               <p className="text-[#B7B7B7] leading-relaxed">
                 Step inside our high-performance facility equipped with top-tier equipment and expert coaching. Rated 5.0 ★★★★★ on Google!
               </p>

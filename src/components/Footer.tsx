@@ -32,7 +32,7 @@ export function Footer() {
                 <div className="w-4 h-4 rounded-full bg-[#C7CDD3] shadow-inner" />
               </div>
               <span className="font-extrabold text-2xl tracking-wider text-white">
-                NR GYM
+                NR FITNESS GYM
               </span>
             </Link>
             <p className="text-[#B7B7B7] text-sm leading-relaxed max-w-sm">
@@ -83,7 +83,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#1a1a1a] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#777]">
-          <p>© {new Date().getFullYear()} NR Gym. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} NR Fitness Gym. All rights reserved.</p>
           
           <button
             onClick={scrollToTop}

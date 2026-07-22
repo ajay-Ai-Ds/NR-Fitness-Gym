@@ -152,7 +152,7 @@ export function HeroSection() {
                     WebkitTextStroke: "1px rgba(255,255,255,0.15)",
                   }}
                 >
-                  NR GYM
+                  NR FITNESS GYM
                 </h1>
               </motion.div>
 

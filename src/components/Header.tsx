@@ -54,10 +54,10 @@ export function Header() {
           </div>
           <div className="flex flex-col leading-none">
             <span className="font-extrabold text-base sm:text-xl tracking-wider text-white block drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-              NR GYM
+              NR FITNESS GYM
             </span>
             <span className="text-[9px] sm:text-[10px] tracking-[0.25em] font-bold text-[#D91E26] uppercase mt-0.5 drop-shadow-[0_0_6px_rgba(217,30,38,0.6)]">
-              FITNESS CENTER
+              FORGE YOUR STRENGTH
             </span>
           </div>
         </Link>

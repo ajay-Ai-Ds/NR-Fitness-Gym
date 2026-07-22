@@ -9,7 +9,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "NR Gym - Tallarevu, Korangi",
+  title: "NR Fitness Gym - Tallarevu, Korangi",
   description: "Transform Your Body. Forge Your Strength. Become Unstoppable. Located in Tallarevu, Korangi, Andhra Pradesh.",
 };
 

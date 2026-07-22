@@ -82,7 +82,7 @@ export function LoadingScreen() {
               WebkitTextFillColor: "transparent",
             }}
           >
-            NR GYM
+            NR FITNESS GYM
           </motion.h1>
         </motion.div>
       )}
