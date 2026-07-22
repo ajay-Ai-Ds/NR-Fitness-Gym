@@ -197,32 +197,36 @@ export function TestimonialsSection() {
           {/* Navigation Buttons */}
           <button
             onClick={goPrev}
-            className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-14 w-10 h-10 rounded-full border border-[#2A2A2A] bg-[#0a0a0a] hover:border-[#D91E26]/50 flex items-center justify-center transition-all duration-300 hover:shadow-[0_0_10px_rgba(217,30,38,0.3)]"
+            className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-14 w-12 h-12 rounded-full border border-[#2A2A2A] bg-[#0a0a0a] hover:border-[#D91E26]/50 flex items-center justify-center transition-all duration-300 hover:shadow-[0_0_10px_rgba(217,30,38,0.3)] min-w-[48px] min-h-[48px]"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft size={18} className="text-[#C7CDD3]" />
+            <ChevronLeft size={20} className="text-[#C7CDD3]" />
           </button>
           <button
             onClick={goNext}
-            className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-14 w-10 h-10 rounded-full border border-[#2A2A2A] bg-[#0a0a0a] hover:border-[#D91E26]/50 flex items-center justify-center transition-all duration-300 hover:shadow-[0_0_10px_rgba(217,30,38,0.3)]"
+            className="absolute top-1/2 -translate-y-1/2 -right-4 md:-right-14 w-12 h-12 rounded-full border border-[#2A2A2A] bg-[#0a0a0a] hover:border-[#D91E26]/50 flex items-center justify-center transition-all duration-300 hover:shadow-[0_0_10px_rgba(217,30,38,0.3)] min-w-[48px] min-h-[48px]"
             aria-label="Next testimonial"
           >
-            <ChevronRight size={18} className="text-[#C7CDD3]" />
+            <ChevronRight size={20} className="text-[#C7CDD3]" />
           </button>
 
-          {/* Dots indicator */}
-          <div className="flex items-center justify-center gap-3 mt-8">
+          {/* Dots indicator with 48px touch padding */}
+          <div className="flex items-center justify-center gap-1 mt-8">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "bg-[#D91E26] w-6 shadow-[0_0_8px_rgba(217,30,38,0.5)]"
-                    : "bg-[#2A2A2A] hover:bg-[#C7CDD3]/30"
-                }`}
+                className="p-3 focus:outline-none"
                 aria-label={`Go to testimonial ${index + 1}`}
-              />
+              >
+                <div
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? "bg-[#D91E26] w-7 shadow-[0_0_8px_rgba(217,30,38,0.5)]"
+                      : "bg-[#2A2A2A] w-2.5 hover:bg-[#C7CDD3]/30"
+                  }`}
+                />
+              </button>
             ))}
           </div>
 

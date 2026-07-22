@@ -1,85 +1,12 @@
 "use client";
 
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, Sparkles, Float } from "@react-three/drei";
-import { WeightPlate } from "./WeightPlate";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import * as THREE from "three";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 
-gsap.registerPlugin(ScrollTrigger);
-
-function CameraController() {
-  const { camera } = useThree();
-
-  useEffect(() => {
-    // Initial camera position
-    camera.position.set(0, 0, 12);
-    
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#hero-scroll-container",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-      },
-    });
-
-    tl.to(camera.position, {
-      z: -2,
-      ease: "power2.inOut",
-    });
-
-    return () => {
-      tl.kill();
-    };
-  }, [camera]);
-
-  return null;
-}
-
-// 4. Light Beams: Animated spot lights creating sweeping god-rays in the fog
-function MovingLightBeams() {
-  const redSpotRef = useRef<THREE.SpotLight>(null);
-  const blueSpotRef = useRef<THREE.SpotLight>(null);
-
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    if (redSpotRef.current) {
-      redSpotRef.current.position.x = Math.sin(t * 0.5) * 6 - 3;
-      redSpotRef.current.position.y = Math.cos(t * 0.3) * 4 + 2;
-    }
-    if (blueSpotRef.current) {
-      blueSpotRef.current.position.x = Math.cos(t * 0.4) * 6 + 3;
-      blueSpotRef.current.position.y = Math.sin(t * 0.6) * 4 - 2;
-    }
-  });
-
-  return (
-    <>
-      <spotLight
-        ref={redSpotRef}
-        position={[-6, 6, 4]}
-        intensity={12}
-        color="#D91E26"
-        angle={0.6}
-        penumbra={0.9}
-        distance={25}
-      />
-      <spotLight
-        ref={blueSpotRef}
-        position={[6, -6, 4]}
-        intensity={12}
-        color="#1E56B4"
-        angle={0.6}
-        penumbra={0.9}
-        distance={25}
-      />
-    </>
-  );
-}
+const HeroCanvas = dynamic(() => import("./HeroCanvas"), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-[#050505]" />,
+});
 
 export function HeroSection() {
   return (
@@ -208,39 +135,8 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* 3D Canvas */}
-          <Canvas shadows dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
-            <fog attach="fog" args={["#08060a", 5, 22]} />
-            
-            {/* Environment and Lighting */}
-            <Environment preset="studio" />
-            <ambientLight intensity={0.35} />
-            <directionalLight 
-              position={[5, 5, 5]} 
-              intensity={2.5} 
-              castShadow 
-              shadow-mapSize-width={1024} 
-              shadow-mapSize-height={1024} 
-            />
-
-            {/* 4. LIGHT BEAMS IN 3D: Moving Red & Blue Spotlights illuminating fog */}
-            <MovingLightBeams />
-
-            <CameraController />
-
-            {/* Central object - KEEP UNTOUCHED as requested */}
-            <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
-              <WeightPlate />
-            </Float>
-
-            {/* 3. FLOATING PARTICLES WITH COLOR: Red, Blue, and Chrome spark/dust layers */}
-            {/* Layer A: Red Sparks caught in plate glow */}
-            <Sparkles count={90} scale={14} size={3.5} speed={0.7} opacity={0.75} color="#D91E26" />
-            {/* Layer B: Metallic Blue Sparks */}
-            <Sparkles count={90} scale={14} size={3.5} speed={0.7} opacity={0.75} color="#1E56B4" />
-            {/* Layer C: Chrome Steel Dust Particles */}
-            <Sparkles count={120} scale={18} size={2} speed={0.4} opacity={0.4} color="#C7CDD3" />
-          </Canvas>
+          {/* Dynamically Loaded 3D Canvas */}
+          <HeroCanvas />
         </div>
       </div>
     </section>
