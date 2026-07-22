@@ -29,17 +29,24 @@ export function Header() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${
-        isScrolled
-          ? "bg-[#050505]/90 backdrop-blur-md border-[#2A2A2A] shadow-[0_10px_30px_rgba(0,0,0,0.8)] py-4"
-          : "bg-black/30 backdrop-blur-xl border-white/10 py-5"
-      }`}
-    >
-      {/* Sleek Glowing Red-to-Blue Accent Line along bottom */}
-      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D91E26] via-[#1E56B4] to-transparent opacity-85 shadow-[0_0_12px_rgba(217,30,38,0.7)]" />
+    <header className="fixed top-0 left-0 w-full z-50 px-3 sm:px-6 pt-3 sm:pt-4 transition-all duration-500 pointer-events-none">
+      <div
+        className={`mx-auto max-w-7xl rounded-xl sm:rounded-2xl transition-all duration-500 relative overflow-hidden pointer-events-auto shadow-[0_10px_35px_rgba(0,0,0,0.9)] ${
+          isScrolled
+            ? "bg-[#050505]/90 backdrop-blur-2xl border border-[#D91E26]/40 py-3 px-4 sm:px-8"
+            : "bg-black/40 backdrop-blur-xl border border-white/15 py-4 px-4 sm:px-8"
+        }`}
+      >
+        {/* 4 Corner HUD Brackets */}
+        <div className="absolute top-0 left-0 w-3.5 h-3.5 border-t-2 border-l-2 border-[#D91E26] opacity-90" />
+        <div className="absolute top-0 right-0 w-3.5 h-3.5 border-t-2 border-r-2 border-[#D91E26] opacity-90" />
+        <div className="absolute bottom-0 left-0 w-3.5 h-3.5 border-b-2 border-l-2 border-[#1E56B4] opacity-90" />
+        <div className="absolute bottom-0 right-0 w-3.5 h-3.5 border-b-2 border-r-2 border-[#1E56B4] opacity-90" />
 
-      <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
+        {/* Sleek Glowing Red-to-Blue Accent Line along bottom */}
+        <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D91E26] via-[#1E56B4] to-transparent opacity-90 shadow-[0_0_12px_rgba(217,30,38,0.8)]" />
+
+        <div className="flex items-center justify-between">
         {/* Logo Badge */}
         <Link href="#" className="flex items-center gap-3 z-50">
           <div className="relative w-12 h-12 rounded-full border-4 border-[#D91E26] bg-[#1E56B4] flex items-center justify-center shadow-[0_0_15px_rgba(217,30,38,0.4)] transition-transform hover:scale-105">
@@ -118,6 +125,7 @@ export function Header() {
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
       </div>
     </header>
   );
