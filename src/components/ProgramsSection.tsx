@@ -79,7 +79,7 @@ function ProgramCard({ program, index }: { program: typeof programs[0]; index: n
       }}
     >
       {/* Card Background */}
-      <div className="relative p-8 md:p-10 bg-gradient-to-br from-[#111111] via-[#0a0a0a] to-[#080808] border border-[#2A2A2A] group-hover:border-[#D91E26]/50 rounded-lg transition-all duration-500 h-full">
+      <div className="relative p-8 md:p-10 bg-gradient-to-br from-[#111111] via-[#0a0a0a] to-[#080808] border border-white/10 group-hover:border-[#D91E26]/60 rounded-lg transition-all duration-500 h-full shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
         {/* Chrome shine sweep on hover */}
         <div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
