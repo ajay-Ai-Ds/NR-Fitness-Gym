@@ -10,6 +10,14 @@
   --color-text-muted: #B7B7B7;
   
   --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  
+  --animate-shimmer: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 body {

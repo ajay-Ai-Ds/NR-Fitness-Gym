@@ -56,35 +56,74 @@ export function HeroSection() {
           {/* UI Layer */}
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 1 }}
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.2, delayChildren: 0.8 },
+                },
+              }}
               className="text-center px-4"
             >
-              <h1 className="text-5xl md:text-8xl font-bold tracking-tight text-white drop-shadow-2xl mb-4"
-                  style={{
-                    WebkitTextStroke: "1px rgba(255,255,255,0.1)",
-                    textShadow: "0 0 40px rgba(217,30,38,0.5)"
-                  }}
+              <motion.div 
+                variants={{
+                  hidden: { opacity: 0, y: 50, filter: "blur(10px)" },
+                  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1, ease: "easeOut" } }
+                }}
+                className="relative inline-block"
               >
-                NR FITNESS GYM
-              </h1>
-              <p className="text-lg md:text-2xl text-[#C7CDD3] tracking-widest uppercase mb-12 font-medium">
-                Transform Your Body <span className="text-[#D91E26] mx-2">/</span> 
-                Forge Your Strength <span className="text-[#D91E26] mx-2">/</span> 
+                {/* Text Red Glow Background */}
+                <div className="absolute inset-0 bg-[#D91E26] blur-[60px] opacity-40 rounded-full scale-150 -z-10" />
+                <h1 
+                  className="text-6xl md:text-9xl font-extrabold tracking-tight mb-4 drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]"
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #ffffff 0%, #C7CDD3 40%, #888888 50%, #ffffff 60%, #C7CDD3 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    WebkitTextStroke: "1px rgba(255,255,255,0.1)",
+                  }}
+                >
+                  NR FITNESS GYM
+                </h1>
+              </motion.div>
+
+              <motion.p 
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                }}
+                className="text-lg md:text-2xl text-[#C7CDD3] tracking-[0.2em] uppercase mb-12 font-medium"
+              >
+                Transform Your Body <span className="text-[#D91E26] mx-2 drop-shadow-[0_0_8px_rgba(217,30,38,1)]">/</span> 
+                Forge Your Strength <span className="text-[#D91E26] mx-2 drop-shadow-[0_0_8px_rgba(217,30,38,1)]">/</span> 
                 Become Unstoppable
-              </p>
+              </motion.p>
               
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pointer-events-auto">
-                <button className="relative overflow-hidden group bg-gradient-to-b from-[#D91E26] to-[#901419] px-8 py-4 rounded-sm shadow-[0_0_20px_rgba(217,30,38,0.4)] hover:shadow-[0_0_40px_rgba(217,30,38,0.8)] transition-all duration-300 transform hover:scale-105">
-                  <span className="relative z-10 text-white font-bold tracking-wider uppercase">Join Today</span>
-                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+              <motion.div 
+                variants={{
+                  hidden: { opacity: 0, scale: 0.9 },
+                  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } }
+                }}
+                className="flex flex-col sm:flex-row items-center justify-center gap-6 pointer-events-auto"
+              >
+                {/* Join Today CTA with ripple and glow */}
+                <button className="relative overflow-hidden group bg-gradient-to-b from-[#D91E26] to-[#901419] px-10 py-5 rounded-sm shadow-[0_0_20px_rgba(217,30,38,0.5)] hover:shadow-[0_0_40px_rgba(217,30,38,0.9)] transition-all duration-300 transform hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.4)_0%,_transparent_60%)] opacity-0 group-hover:opacity-100 scale-[0.5] group-hover:scale-[2] transition-all duration-500 ease-out" />
+                  <span className="relative z-10 text-white font-bold tracking-[0.1em] uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Join Today</span>
+                  {/* Metallic edge highlight */}
+                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                 </button>
                 
-                <button className="px-8 py-4 rounded-sm border border-[#2A2A2A] bg-[#050505]/50 backdrop-blur-sm text-[#C7CDD3] hover:text-white hover:border-[#C7CDD3] transition-all duration-300 tracking-wider uppercase font-bold">
-                  View Membership
+                {/* View Membership CTA with metallic border */}
+                <button className="relative overflow-hidden group px-10 py-5 rounded-sm border border-[#C7CDD3]/30 bg-gradient-to-b from-[#2A2A2A]/50 to-[#050505]/80 backdrop-blur-md hover:border-[#C7CDD3] transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_15px_rgba(199,205,211,0.1)] hover:shadow-[0_0_25px_rgba(199,205,211,0.3)]">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+                  <span className="relative z-10 text-[#C7CDD3] group-hover:text-white tracking-[0.1em] uppercase font-bold transition-colors duration-300">
+                    View Membership
+                  </span>
                 </button>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
 

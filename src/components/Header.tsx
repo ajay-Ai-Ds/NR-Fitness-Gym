@@ -21,7 +21,8 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      // Shift to solid black only past the hero section (~100vh)
+      setIsScrolled(window.scrollY > window.innerHeight - 100);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -29,19 +30,19 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${
         isScrolled
-          ? "bg-[#050505] shadow-lg py-4"
-          : "bg-transparent backdrop-blur-sm py-6"
+          ? "bg-[#050505] border-[#2A2A2A] shadow-lg py-4"
+          : "bg-black/20 backdrop-blur-lg border-white/10 py-6"
       }`}
     >
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo Badge */}
         <Link href="#" className="flex items-center gap-3 z-50">
-          <div className="relative w-12 h-12 rounded-full border-4 border-[#D91E26] bg-[#1E56B4] flex items-center justify-center shadow-[0_0_15px_rgba(217,30,38,0.4)]">
+          <div className="relative w-12 h-12 rounded-full border-4 border-[#D91E26] bg-[#1E56B4] flex items-center justify-center shadow-[0_0_15px_rgba(217,30,38,0.4)] transition-transform hover:scale-105">
             <div className="w-4 h-4 rounded-full bg-[#C7CDD3] shadow-inner" />
           </div>
-          <span className="font-bold text-xl tracking-wider text-white hidden sm:block">
+          <span className="font-bold text-xl tracking-wider text-white hidden sm:block drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
             NR FITNESS
           </span>
         </Link>
@@ -52,7 +53,7 @@ export function Header() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium tracking-wide text-[#B7B7B7] hover:text-white transition-colors"
+              className="text-sm font-medium tracking-wide text-[#B7B7B7] hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(217,30,38,0.8)]"
             >
               {link.name}
             </Link>
