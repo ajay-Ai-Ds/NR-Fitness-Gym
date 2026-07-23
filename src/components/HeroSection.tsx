@@ -1,145 +1,185 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
+import { initHeroScrollTimeline } from "./ScrollTimeline";
+import { AnimationController } from "./AnimationController";
 
-const HeroCanvas = dynamic(() => import("./HeroCanvas"), {
+const HeroScene = dynamic(() => import("./HeroScene"), {
   ssr: false,
   loading: () => <div className="absolute inset-0 bg-[#050505]" />,
 });
 
 export function HeroSection() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const timeline = initHeroScrollTimeline({
+      triggerId: "hero-scroll-container",
+      onUpdate: (progress) => {
+        setScrollProgress(progress);
+      },
+    });
+
+    return () => {
+      timeline?.kill();
+    };
+  }, []);
+
+  const animState = AnimationController.getFrame(scrollProgress);
+
   return (
     <section className="relative bg-[#050505] overflow-hidden">
       {/* 
-        This container defines the scrollable height for the 3D camera flight.
-        130vh keeps the transition tight and removes empty gap before About Us.
+        Scrollable container height: 300vh allows a 8–10 second smooth scroll storytelling flow
+        0% -> 20% Weight Plate -> 40% Flythrough -> 55% Gym -> 70% Grip -> 85% Deadlift Lockout -> 100% "FORGE YOUR STRENGTH"
       */}
-      <div id="hero-scroll-container" className="h-[130vh] w-full">
-        {/* Sticky container for the Canvas and UI */}
-        <div 
+      <div id="hero-scroll-container" className="h-[320vh] w-full">
+        {/* Sticky full-screen viewport */}
+        <div
           className="sticky top-0 left-0 w-full h-screen overflow-hidden"
           style={{
-            // 2. BACKGROUND GRADIENT: Subtle dark radial gradient centered behind plate with faint red/blue tint
             background: "radial-gradient(circle at 50% 50%, #150912 0%, #0a0c16 45%, #050505 100%)",
           }}
         >
-          {/* 1. AMBIENT LIGHT BLEED: Soft red & blue radial glows bleeding into space */}
+          {/* Ambient Lighting Bleed Overlay */}
           <div className="absolute inset-0 pointer-events-none z-0">
-            {/* Center Red Light Bleed */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] bg-[#D91E26] rounded-full blur-[160px] opacity-25 animate-pulse" />
-            {/* Blue Side Bleed */}
-            <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#1E56B4] rounded-full blur-[180px] opacity-20" />
-            {/* Ambient Chrome Center Halo */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-[#C7CDD3] rounded-full blur-[130px] opacity-15" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] sm:w-[850px] sm:h-[850px] bg-[#D91E26] rounded-full blur-[170px] opacity-25 animate-pulse" />
+            <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#1E56B4] rounded-full blur-[190px] opacity-20" />
           </div>
 
-          {/* 4. LIGHT BEAMS OVERLAY: Subtle atmospheric beam sweeps */}
-          <div className="absolute inset-0 pointer-events-none z-0 opacity-20">
-            <div 
-              className="w-full h-full"
-              style={{
-                backgroundImage: "linear-gradient(45deg, transparent 40%, rgba(217,30,38,0.15) 50%, transparent 60%), linear-gradient(-45deg, transparent 40%, rgba(30,86,180,0.15) 50%, transparent 60%)",
-                backgroundSize: "200% 200%",
-                animation: "borderShift 8s ease-in-out infinite",
-              }}
-            />
-          </div>
-
-          {/* UI Layer */}
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: { staggerChildren: 0.2, delayChildren: 0.8 },
-                },
-              }}
-              className="text-center px-4 relative"
-            >
-              {/* 5. TEXT AREA GLOW: Multi-layered soft glow halo behind heading & subheading */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-72 bg-gradient-to-r from-[#D91E26]/30 via-[#1E56B4]/20 to-[#D91E26]/30 blur-[90px] rounded-full -z-10 opacity-70 pointer-events-none animate-pulse" />
-
-              <motion.div 
-                variants={{
-                  hidden: { opacity: 0, y: 50, filter: "blur(10px)" },
-                  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1, ease: "easeOut" } }
-                }}
-                className="relative inline-block"
-              >
-                <h1 
-                  className="text-6xl md:text-9xl font-extrabold tracking-tight mb-4 drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]"
-                  style={{
-                    backgroundImage: "linear-gradient(135deg, #ffffff 0%, #C7CDD3 40%, #888888 50%, #ffffff 60%, #C7CDD3 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    WebkitTextStroke: "1px rgba(255,255,255,0.15)",
-                  }}
+          {/* HTML UI Story Overlays */}
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none px-4">
+            <AnimatePresence mode="wait">
+              {/* Phase 1: 0% -> 30% Initial Branding */}
+              {animState.textPhase === "hero" && (
+                <motion.div
+                  key="hero-text"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30, filter: "blur(10px)" }}
+                  transition={{ duration: 0.6 }}
+                  className="text-center max-w-5xl"
                 >
-                  NR FITNESS GYM
-                </h1>
-              </motion.div>
+                  <div className="relative inline-block">
+                    <h1
+                      className="text-5xl sm:text-7xl md:text-9xl font-black tracking-tight mb-4 drop-shadow-[0_10px_25px_rgba(0,0,0,0.9)]"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(135deg, #ffffff 0%, #C7CDD3 40%, #888888 50%, #ffffff 60%, #C7CDD3 100%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      NR FITNESS GYM
+                    </h1>
+                  </div>
 
-              <motion.p 
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-                }}
-                className="text-lg md:text-2xl text-[#C7CDD3] tracking-[0.2em] uppercase mb-12 font-medium drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)]"
-              >
-                Transform Your Body <span className="text-[#D91E26] mx-2 drop-shadow-[0_0_12px_rgba(217,30,38,1)]">/</span> 
-                Forge Your Strength <span className="text-[#D91E26] mx-2 drop-shadow-[0_0_12px_rgba(217,30,38,1)]">/</span> 
-                Become Unstoppable
-              </motion.p>
-              
-              <motion.div 
-                variants={{
-                  hidden: { opacity: 0, scale: 0.9 },
-                  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" } }
-                }}
-                className="flex flex-col sm:flex-row items-center justify-center gap-6 pointer-events-auto"
-              >
-                {/* Join Today CTA with ripple and glow */}
-                <a 
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="relative overflow-hidden group bg-gradient-to-b from-[#D91E26] to-[#901419] px-10 py-5 rounded-sm shadow-[0_0_25px_rgba(217,30,38,0.6)] hover:shadow-[0_0_45px_rgba(217,30,38,0.9)] transition-all duration-300 transform hover:-translate-y-1 inline-block text-center cursor-pointer"
+                  <p className="text-base sm:text-xl md:text-2xl text-[#C7CDD3] tracking-[0.25em] uppercase mb-10 font-medium">
+                    Transform Your Body <span className="text-[#D91E26] mx-2">/</span> Forge Your Strength{" "}
+                    <span className="text-[#D91E26] mx-2">/</span> Become Unstoppable
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pointer-events-auto">
+                    <a
+                      href="#contact"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                      }}
+                      className="relative overflow-hidden bg-gradient-to-b from-[#D91E26] to-[#901419] px-10 py-4 rounded-sm shadow-[0_0_25px_rgba(217,30,38,0.6)] hover:shadow-[0_0_45px_rgba(217,30,38,0.9)] transition-all duration-300 transform hover:-translate-y-1 text-white font-bold tracking-[0.1em] uppercase cursor-pointer"
+                    >
+                      Join Today
+                    </a>
+                    <a
+                      href="#membership"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById("membership")?.scrollIntoView({ behavior: "smooth" });
+                      }}
+                      className="px-10 py-4 rounded-sm border border-[#C7CDD3]/40 bg-gradient-to-b from-[#2A2A2A]/60 to-[#050505]/90 backdrop-blur-md text-[#C7CDD3] hover:text-white font-bold tracking-[0.1em] uppercase transition-all duration-300 cursor-pointer"
+                    >
+                      View Membership
+                    </a>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Phase 2: 30% -> 75% Camera Fly-Through & Gym Entrance */}
+              {(animState.textPhase === "transition" || animState.textPhase === "gym") && (
+                <motion.div
+                  key="gym-text"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+                  transition={{ duration: 0.5 }}
+                  className="text-center"
                 >
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.4)_0%,_transparent_60%)] opacity-0 group-hover:opacity-100 scale-[0.5] group-hover:scale-[2] transition-all duration-500 ease-out" />
-                  <span className="relative z-10 text-white font-bold tracking-[0.1em] uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">Join Today</span>
-                  {/* Metallic edge highlight */}
-                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-                </a>
-                
-                {/* View Membership CTA with metallic border */}
-                <a 
-                  href="#membership"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById("membership")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="relative overflow-hidden group px-10 py-5 rounded-sm border border-[#C7CDD3]/40 bg-gradient-to-b from-[#2A2A2A]/60 to-[#050505]/90 backdrop-blur-md hover:border-[#C7CDD3] transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(199,205,211,0.15)] hover:shadow-[0_0_30px_rgba(199,205,211,0.4)] inline-block text-center cursor-pointer"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
-                  <span className="relative z-10 text-[#C7CDD3] group-hover:text-white tracking-[0.1em] uppercase font-bold transition-colors duration-300">
-                    View Membership
+                  <span className="text-[#D91E26] font-bold tracking-[0.4em] text-sm md:text-lg uppercase drop-shadow-[0_0_12px_rgba(217,30,38,0.8)] block mb-2">
+                    Industrial Arena
                   </span>
-                </a>
-              </motion.div>
-            </motion.div>
+                  <h2 className="text-3xl md:text-6xl font-black uppercase text-white tracking-wider drop-shadow-2xl">
+                    Where Champions Are Forged
+                  </h2>
+                </motion.div>
+              )}
+
+              {/* Phase 3: 75% -> 100% Deadlift Lockout & "FORGE YOUR STRENGTH" Reveal */}
+              {animState.textPhase === "lockout" && (
+                <motion.div
+                  key="lockout-text"
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
+                  className="text-center"
+                >
+                  <motion.div
+                    animate={{ scale: [1, 1.03, 1] }}
+                    transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                    className="relative inline-block px-4"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#D91E26]/40 via-[#1E56B4]/30 to-[#D91E26]/40 blur-[80px] rounded-full -z-10" />
+                    <span className="text-[#D91E26] font-bold tracking-[0.5em] text-xs sm:text-base uppercase block mb-3 drop-shadow-[0_0_15px_rgba(217,30,38,1)]">
+                      Peak Performance
+                    </span>
+                    <h2
+                      className="text-5xl sm:text-7xl md:text-9xl font-black tracking-tight drop-shadow-[0_15px_35px_rgba(0,0,0,0.95)]"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(135deg, #ffffff 0%, #D91E26 50%, #1E56B4 100%)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      FORGE YOUR STRENGTH
+                    </h2>
+                  </motion.div>
+
+                  <div className="mt-8 flex justify-center pointer-events-auto">
+                    <a
+                      href="#programs"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById("programs")?.scrollIntoView({ behavior: "smooth" });
+                      }}
+                      className="inline-flex items-center gap-2 bg-[#D91E26] hover:bg-[#b5161c] text-white font-bold tracking-widest text-sm uppercase px-8 py-3.5 rounded-sm transition-all shadow-[0_0_25px_rgba(217,30,38,0.5)] hover:shadow-[0_0_35px_rgba(217,30,38,0.8)] cursor-pointer"
+                    >
+                      Explore Programs
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                      </svg>
+                    </a>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
-          {/* Dynamically Loaded 3D Canvas */}
-          <HeroCanvas />
+          {/* Interactive R3F Canvas */}
+          <HeroScene scrollProgress={scrollProgress} />
         </div>
       </div>
     </section>
   );
 }
-
