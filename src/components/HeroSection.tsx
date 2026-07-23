@@ -32,10 +32,9 @@ export function HeroSection() {
   return (
     <section className="relative bg-[#050505] overflow-hidden">
       {/* 
-        Scrollable container height: 300vh allows a 8–10 second smooth scroll storytelling flow
-        0% -> 20% Weight Plate -> 40% Flythrough -> 55% Gym -> 70% Grip -> 85% Deadlift Lockout -> 100% "FORGE YOUR STRENGTH"
+        Scrollable container height: 140vh keeps the transition tight and removes empty gap before About Us
       */}
-      <div id="hero-scroll-container" className="h-[320vh] w-full">
+      <div id="hero-scroll-container" className="h-[140vh] w-full">
         {/* Sticky full-screen viewport */}
         <div
           className="sticky top-0 left-0 w-full h-screen overflow-hidden"
