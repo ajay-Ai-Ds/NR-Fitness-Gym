@@ -16,7 +16,7 @@ const trainers = [
     image: "/images/trainer1.png",
   },
   {
-    name: "Trainer Name 2",
+    name: "Chandu the Rockstar",
     role: "Fitness Coach / Weight Loss Expert",
     bio: "Specialized in body transformations and metabolic training. ACE certified personal trainer.",
     specialties: ["Weight Loss", "HIIT", "Nutrition"],
