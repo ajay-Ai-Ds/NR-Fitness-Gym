@@ -21,6 +21,7 @@ const trainers = [
     bio: "Specialized in body transformations and metabolic training. ACE certified personal trainer.",
     specialties: ["Weight Loss", "HIIT", "Nutrition"],
     icon: Target,
+    image: "/images/trainer2.jpeg",
   },
   {
     name: "Trainer Name 3",
@@ -107,6 +108,7 @@ function TrainerCard({ trainer, index }: { trainer: typeof trainers[0]; index: n
               src={trainer.image}
               alt={trainer.name}
               fill
+              unoptimized
               className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
             />
           ) : (
